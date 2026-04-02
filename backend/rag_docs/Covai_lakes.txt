@@ -1,0 +1,348 @@
+Investigation of Physico-Chemical and Biological Characteristics of Various Lake Water in Coimbatore District,Tamilnadu,India
+M. Jeyaraj1,2, K. Ramakrishan3, A. Jai Anandhi3, S. Arunachalam1,4 and P. N. Magudeswaran1,5*
+1Research and Development Centre, Bharathiar University, Coimbatore - 641 046, Tamil Nadu, India.
+
+2Department of Chemistry, Sri Krishna College of Engineering and Technology, Coimbatore-641 008,Tamil Nadu, India.
+
+3Department of Mathematics, Sri Krishna College of Engineering and Technology, Coimbatore-641 008,Tamil Nadu, India.
+
+4Department of Chemistry, Kalasalingam Univesity, Krishnankoil - 626126Tamil Nadu, India
+
+5Department of Chemistry, Hindusthan College of Engineering and Technology, Coimbatore-641 032,Tamil Nadu, India.
+
+Corresponding Author E-mail: jeyaraja100@gmail.com
+
+DOI : http://dx.doi.org/10.13005/ojc/320436
+
+Download this article as:  PDF Access denied to this file.
+
+ABSTRACT:
+Lake water quality degradation has been apparent for decades, especially in those lakes situated in the vicinity of cities which have anthropogenic activities. The present investigation was carried out for determining the various physico-chemical and biological characteristics of surface water quality of various lakes at Coimbatore, India. The sampling points were selected on the basis of their importance. Six sampling locations namely at Perur Lake (L1), Selvachinthamani Lake (L2), Ukkadam Lake (L3), Kurichi Lake (L4), Valankulam Lake (L5), and Singanallur Lake (L6) were selected and water samples were collected mostly from open wells in and around Coimbatore district. The physico-chemical parameters like Dissolved oxygen, Faecal coliforms, pH, Electrical conductivity, Biochemical oxygen demand, Chemical oxygen demand, Turbidity, Total dissolved solids, Sulphate, Nitrate, Phosphate, Chlorides and Alkalinity were analyzed. The results suggested that, the lake water samples collected from various sites in and around Coimbatore citywere above the limits of WHO standards.
+
+KEYWORDS:
+anthropogenic activities; Alkalinity; physicochemical
+
+Introduction
+
+Water is the elixir of life, an expensive gift of nature to mankind and millions of other species living on the earth. It is fast becoming a scare commodity in most part of the world. Due to the urbanization and expanding economic activities, nearly 13% of the world’s population do not have to access the safe drinking water1.With the current trend of water demand, water shortage would become even more intense and approximately, half of the world’s population would suffer from major water scarcity by the year 20302. Surface water quality is an essential component of the natural environment and a matter of serious concern today. The variations of water quality are essentially the combination of both anthropogenic and natural contributions. In general, the anthropogenic discharges constitute a constant source of pollution, whereas surface runoff is a seasonal phenomenon which is affected by climate within the water catchment basin3. Due to the intensive human activities, the anthropogenic inputs from a variety of sources are commonly the primary factors affecting the water quality of most rivers, lakes, estuaries, and seas, especially for those close to highly urbanised regions. Many investigations have been conducted on anthropogenic contaminants of ecosystems4-6.
+
+The quality of water is identified in terms of its physical, chemical and biological parameters. Polluted surface waters cannot achieve a balanced ecosystem. A balanced ecosystem is one in which living things andthe environment interacts beneficially with one another. Water quality obviously plays a critical role in this relationship7 as it is the key to the maintenance of a well-balanced environment.
+
+Lakes, rivers and tanks have important multi-usage components, such as sources of drinking water, irrigation, fishery and energy production. These considerably depend onthe water quality and thus water quality should be kept at a certain level. Agricultural, industrial and urban activities are considered to be major sources of the addition of chemicals and nutrients to aquatic ecosystems8.The quality of surface water in an inland water bodyhas a profound effect on the ground water table and ground water quality of the nearby aquifers due to theexistence of direct interaction between surface and ground water9.
+
+Lakes situated in the Coimbatore city undergo rapid degradation due to the various factors related with city development: waste dumping, industries and large-scale reclamation for other uses. There are around 28 lakes in and around the city limits which are largely fed by the river Noyyal, flowing alongside the city. These wetlands serve as storage and percolation tanks and are major recharge sites for groundwater. Regardless of the ecological services offered by these lakes, many of them face destruction due to infilling and encroachment. The present study has been carried out to assess the pollution status of lakes in and around Coimbatore and to examine the changes in water quality that have happened during the last decade.
+
+Study Area
+
+Coimbatore (Manchester of South India) is the second largest city in the Indian state of Tamil Nadu. It is located at 11° 1′ 6″ N, 76° 58′ 21″ E. Industrialisation and urbanisation exhibit major impact on surface water environment in Coimbatore district, Tamil Nadu, India. Due to the developmental activities both surface and subsurface water sources are getting polluted. Numerous textile, automobiles, home appliances and small scale industries are located in Coimbatore. The effluents from these industries greatly disturb the quality of surface water. Hence, the Coimbatore district was selected in this study to analysis physicochemical and biological characteristics of different lake water.
+
+Perur Lake (L1)is situated in the village Perur. This Lakespreads across 264.8 acres, with the catchment area of 2.227 sq.km of free and 2.586 sq.km of combined area. The full tank level is14.8 m. Encroachment in this wetland is nearly1.5 acres and comprising 100 huts in the foreshore and 50 on the bunds. The wetland is surrounded by agricultural lands, villages and roads.Selvachinthamani Lake(L2) is located within the city on the north ofPerur road and east of Selvapuram. It has catchment of 1600 hectares with the current lakebed area of 10.522 hectares and a water storage capacity of 3mc.ft. It receives surplus water from the Kumaraswamy Lake in addition to a major sewage inlet. It is a smaller lake compared to other lakes in the city. It is surrounded by lots of houses and the bunds are covered with debris.Coimbatore big Lake (L3)also known as “Ukkadam pond” is situated close to Ukkadam bus-stand Coimbatore. The Capacity of the tank is 69.95 mc.ft and depth is 19.10 feet and the tankis located to the north of the river Noyyal. During the rainy season adequate quantity of water is flooded in to the tank from river Noyyal and thereby helping the fisherman societies in carrying out fishing10.
+
+The KuruchiLake (L4) has a water spread area of 343.96 acres and holds the least water storage capacity because of its shallowness. In the tank, 9.50 acres is encroached by about 200 huts on the bund and 274 abutting the channels. This wetland receives municipal sewage and is a site for dumping garbage from inhabitations around its vicinity.Valankulam Lake (L5)is located between Sungam in the east to Ukkadam in the west.It has catchment area of 480 hectareswith the current lakebed area of 38.85 hectares and a water storage capacity of 16.7 mc.ft. It receives supply from the Coimbatore anicut channel through the Coimbatore big lake and the surplus flows into a stream, which joins the Singanallur Lake. The present length of the water passage is 6.0 m at the Sungam junction in the city. As per the PWD records, there are about 1500 huts located in the lake occupying about 6.070 hectares.SinganallurLake (L6) is situated at the right side of the Coimbatore. The bund on the Lake is over 3 km long and the catchment area is 11.776 sq. miles; water spread area 1.153 sq.km withmaximum flood discharge of 100.95 cu.sec. The catchment area collects rain water during monsoon season. It has a capacity of 52.27 mc.ft with a depth of 13.95 feet11. The major cause of pollution is due to the drainages from Sanganur, industrial effluents, sewage and municipal solid wastes.
+
+ 
+
+Figure 1: Study area (L1 – Perur, L2 – Selvachinthamani, L3 – Ukkadam, L4 – Kurichi, L5 – Valankulam, L6 – Singanallur)	
+Figure 1: Study area (L1 – Perur, L2 – Selvachinthamani, L3 – Ukkadam, L4 – Kurichi, L5 – Valankulam, L6 – Singanallur)
+
+
+
+Click here to View Figure
+
+ 
+
+Materials and Methods
+
+Collection of Samples
+
+The sample locations were in both rural and urban area Surface water samples were collected from sixLakes in and around Coimbatore district viz,PerurLake (L1),SelvachinthamaniLake (L2), Coimbatore big Lake (L3), KuruchiLake (L4), Valankulam Lake (S5) and SinganallurLake (L6) during the monsoon season in the year -2015. Sampling locations are illustrated in figure.1. Samples were collected in plasticbottle for physicochemical purpose and in sterilized glass bottle for bacteriological quality to avoid unpredictable changes in the characteristics. The collected samples were analyzed for important physicochemical and biological parameters such as dissolved oxygen,Faecal coliforms, pH, Electrical conductivity, Biochemical oxygen demand,Chemical oxygen demand, Phosphate, Nitrate,Sulphate, Chloride, Alkalinity,Turbidity and Total dissolved solids.The instruments were used precisely and accurately. AR grade chemicals were also used.
+
+Methods of analysis
+
+pH and Electrical conductivity was measured using digital pH meter and digital conductivity metre equipped with the respective electrodes.  The multiple-tube fermentation method was used to determine the presence of bacteria. The confirmed and complete test was carried out for the samples by using the nutrient froth. The Winkler’s titrimetric method was used for the determination of dissolved oxygen. BOD5 was measured by incubating the samples for 5 days at 20oC. COD was estimated by oxidizing the organic matter in the sample by digesting it with potassium dichromate in the presence of strong acid. The unreduced potassium dichromate was then estimated by titrating with ferrous sulphate solution using ferroin as indicator. Sulphate concentration was determined following the turbid-metric method and detected spectrophotometrically at wavelength 420 nm. Chloride was determined following Argentometric titration method.Alkalinity was determined by titrating the sample with standard solution of mineral acid using pH indicators viz. phenolphthalein and methyl orange.  The turbidity was measured by using digital turbidity meter, 863D ‘Bio-Chem make. The evaporation method is used for determining the total solids by using standard procedures and Nitrate ion was determined using Brucine method. To determine the total phosphorusstannous chloride method is used by following the established procedure12.
+
+Result and Discussion
+
+pH, Dissolved oxygen and Faecal Coliform
+
+The pH value of drinking water is an important index of acidity or alkalinity. A number of minerals and organic matter interact with one another to give the resultant pH value of the sample. The rise in the pH indicates the increased level of pollution in the lakes. In the present study the pH of water samples varied from 7.60 to 8.72. The highest level of pH recorded in Ukkadam Lake was 8.72 which exceed the permissible limits (6.5-8.5).The pH levels in the water in Ukkadam Lake were mostly higher than the previous reports13.Dissolved oxygen levels in lakes vary according to their trophic levels, and depletion of DO in water probably is the most frequent result of water pollution14. It fluctuates seasonally and also daily with variations in water temperatures mainly due to consumption of DO owing to respiration by aquatic animals, decomposition of organic matter, and various chemical reactions15-16. In the present study the DO of water samples varied from 4.10mg/l to 6.0mg/l. The low DO was recorded in Kurichi Lake as this lake is surrounded by many domestic waste pumps. The sewage from the vicinity flows down, and would have led to low DO content.The existence of faecal coliform bacteria in drinking water indicates the presence of pathogens responsible for the communication of water borne diseases17-18. In the present study, the faecal coliform presents in the water samples varied from 80 MPN/100ml to 155 MPN/100ml and it was the highest in the water of ValankulamLake. Thefeacal coliform value above the range of 10MPN/100ml demonstrates the poor water quality. Higher FC values indicate free flow of sewage in to the lake.
+
+Table l Physico-Chemical and biological characteristics of water samples collected from various Lakes in and around Coimbatore District
+
+S.No
+
+Parameters
+
+Units
+
+L1
+
+L2
+
+L3
+
+L4
+
+L5
+
+L6
+
+1	DO	mg/l	
+5.20
+
+5.40
+
+5.10
+
+4.10
+
+6.0
+
+5.80
+
+2	FC	MPN/100ml	
+95
+
+110
+
+140
+
+155
+
+80
+
+90
+
+3	pH	pH  units	
+7.80
+
+7.85
+
+8.72
+
+8.02
+
+7.6
+
+8.20
+
+4	EC	μS/cm	
+280
+
+413
+
+1456
+
+782
+
+985
+
+1230
+
+5	BOD	mg/l	
+4.50
+
+3.82
+
+4.20
+
+6.10
+
+3.60
+
+3.80
+
+6	COD	mg/l	
+242
+
+260
+
+470
+
+345
+
+320
+
+275
+
+7	PO4	mg/l	
+1.80
+
+2.00
+
+2.20
+
+1.40
+
+1.25
+
+2.10
+
+8	NO3	mg/l	
+4.80
+
+3.70
+
+4.90
+
+3.20
+
+3.80
+
+4.20
+
+9	SO4	mg/l	
+18.50
+
+24
+
+122
+
+62
+
+40
+
+82.50
+
+10	Cl–	mg/l	
+172
+
+320
+
+872
+
+122
+
+202
+
+562
+
+11	Alkalinity	mg/l	
+120
+
+160
+
+562
+
+378
+
+510
+
+523
+
+12	TDS	mg/l	
+198
+
+246
+
+952
+
+540
+
+580
+
+820
+
+13	Turbidity	NTU	
+8.50
+
+7.20
+
+12.50
+
+9.40
+
+10.50
+
+11.00
+
+(L1– Perur, L2 – Selvachinthamani, L3 – Ukkadam, L4 – Kurichi, L5 – Valankulam,
+
+L6 – Singanallur)
+
+Electrical Conductivity, BOD and COD
+
+Electrical conductivity of water is a direct function of its total dissolved salts19 and is used as an index to represent the total concentration of soluble salts in water20-21. Excess electrical conductivity lead to scaling in boilers, corrosion and quality degradation of the product.In the present study the electrical conductivity of water samples ranged between 280 to 1456 µs/cm. The conductivity of water was highest in Ukkadam Lake and lowest in the Perur Lake. Biochemical oxygen demanddepends on aquatic life;variation in BOD indicates dynamismin aquatic life present in the lake. BOD refers to the oxygenused by the microorganism in the aerobic oxidation of organic matter. Therefore with the increase in the amount of organicmatter in the water level, the BOD increases.In the present study the BOD of water samples varied from 3.60 to 6.10 mg/l and it was the highest in the water of Kurichi Lake. The BOD value above the range of 5mg/l demonstrates the poor water quality. Higher BOD values indicate organic contamination22and highnutrient loading decomposition andmineralisation of organic matter reduces the oxygen content in the water23.The COD values in the Lakes were in the range of 242 mg/l to 470mg/l, the lowest being in the Perur Lake and highest in the UkkadamLake. This could be associated with higher levels of inorganic wastes being discharged into the lake. The COD levels in the water in Ukkadam Lake were mostly higher than the previous reports13.
+
+TDS, Chloride and Total Alkalinity
+
+Total dissolved solids may be organic or inorganic but precisely, the dissolved solids are composed mainly of carbonates, bicarbonates, chloride, sulphate, calcium, magnesium, phosphate, nitrate, sodium, potassium and iron25-26. TDS values in the water ranged from 198mg/l to 952 mg/l. The highest value of TDS recorded in the Ukkadam Lake was 952mg/l and lowest value of TDS recorded in PerurLakewas 198mg/l. The high TDS in Ukkadam Lake might be attributed to effluents from industrial units such as dyeing industries adjoining the Lake.Chloride is one of the most important parameteris assessing the water quality.The COD increases with increasing concentration ofchlorides in lake water from different sources like disposal ofsewage and industrial waste27.Higher concentration of chlorides indicates higher degree of organic pollutant28-29.The samples of Kurichi Lake were found to have the lowest concentration of chloride compared to other lakes. High chloride content in waters of Ukkadam, Singanallur and Selvachinthamani Lake might be due to domestic and other effluents joining them.Total Alkalinity in water is due to the salts ofweak acids and bicarbonates of highly alkaline water30. Large amount of alkalinity imparts a bitter taste, harmful for irrigation as it damages soil and hence reduces crop yields31. Total alkalinity showed the lowest values of 120mg/l at Perur Lake and the highest value of 562mg/l at UkkadamLake. Throughout the study, alkalinity values of Ukkadam, Valankulam, Singanallur and Kurichi Lakes were higher than those of Perur and ChinthamaniLake.
+
+Nitrate, Phosphate and Sulphate
+
+Nitrate ion is the most important nutrient in an ecosystem. Generally water bodies polluted by organic matter exhibit higher values of nitrate. The high concentration of nitrate in drinking wateris toxic and causes blue baby syndrome, methamoglobinemia inchildren and gastric carcinomas32. In the present study, the nitrate concentration ranged from 3.20mg/l to 4.90mg/l at Kurichi and Ukkadam Lake respectively. The high value of nitrate was observed in Ukkadam Lake, which may be attributed to domestic waste and sewage discharges.
+
+Major Sources of sulphur in fresh water are in the form of sewage andfertilizers33-35. High sulphate values makes the water unfit fordomestic utilities36. Phosphate enters the lakes through domestic wastewater, accounting for the accelerated eutrophication37and the augmented concentration of PO4–and NO3–ions in lakes resulted in enhanced phytoplankton productivity38.The values of phosphate and sulphate were in the range of 1.25mg/l to 2.20mg/l and 18.50 mg/l to 120mg/l, respectively. The high posphate and sulphates values were recorded from UkkadamandSinganallur Lakes respectively. Phosphate concentration in clean water should be ranged from 0.01 to 0.1mg/l. In the present study, shows high concentration of phosphates in all the lakes except Valankulam Lake water. The phosphates are chiefly derived from decomposing organic matter, leaching of phosphorous rich bed rock and additionally from anthropogenic activities or wastes39. Sulphate concentration was very high in Ukkadam Lake 122mg/l and lowest in Perur lake ie.18.50 mg/l. High concentration of sulphate in Ukkadam Lake is mainly due to the fact that the Lake is located besides one of the biggest fish markets of the city and several slaughter houses operate nearby the lake.
+
+Turbidity
+
+Drinking water turbidity is commonly used as a proxy measure for the risk of microbial contamination and the effectiveness of the treatment of public drinking water40. It can interfere with disinfection process and provides an ideal medium for microbial growth and a few documented water borne disease outbreaks which were associated with increased turbidity levels41. The WHO maximum permissible limit of turbidity is 5 NTU42. Turbidity values in the water samples ranged from 7.2 NTU to 12.5 NTU. Turbidity values were also the highest in the Ukkadam Lake compared to other lakes.
+
+Conclusions
+
+Water quality from the above studied lakes is unsafe for consumption of human use and therefore need serious attention. The present study revealed that water quality form the studied lakes is polluted with reference to almost all the water quality parameters studied.Water remains in alkaline nature in all the lakes.Total concentration of TDS was above the permissible limit in all the lakes except Perur and Selvachinthamani Lake. Chloride ion concentration in all the lake water samples except Perur, Kurichi and Valankulam Lakes has high value above permissible limits. Domestic and industrial discharges into the lakes particularly Ukkadam, Kurichi, Valankulam and Singanallur Lakes are probably responsible for the observed high concentration values of electrical conductivity,COD, alkalinity, and turbidity.From the analyses, it has been observed that the deterioration of the lakes in our study area was mostly due to industrial effluents like dyeing, jewellery making, foundries, urban sewage and municipal solid waste dumping. The lakes boundaries are also used for dumping domestic garbage.Thus, surface water of lakes in our study area at Coimbatore region is not suitable for domestic purpose as per drinking water standards and WHO guidelines.
+
+Rapid industrialization and urbanization in Coimbatore city may further aggravate the pollution level in future. At the same time Coimbatore city does not have underground drainage system. So it is highly recommended that apartfrom continuous collection of effluents for monitoring purposes, automated measuring and monitoring equipment be installed to check discharge parameters against stipulated standard for drinking water, aquatic life and other purposes. This strategy may provide the useful planning to control the pollution and prevents the depletion of the quality of lake water in the future.
+
+Acknowledgement
+
+One of the authors M. Jeyaraj is greatly thankful to Mrs. S. Malarvizhi, Chair Person and Managing Trustee, Sri Krishna Group of Institutions, Coimbatore for irrecoverable support and providing the research facilities.
+
+References
+
+WHO and UNICEF Progress on sanitation and drinking water. World Health Organisation and The United Nations Children’s Fund, 2010.
+UNESCO-WWAP The United Nations World Water Development Report 3: Water in a Changing World, Paris: UNESCO Publishing, and London: Earth scan, UNESCO-World Water Assessment Programme, 2009.
+Zeng, X.; Rasmussen, T.C. J. Environ. Qual. 2005,34, 1980-1991.
+CrossRef
+Heikka, R.A. J. Chemomet. 2007,22, 747-751.
+CrossRef
+Nakasone, H. Paddy Water Environ. 2009, 7, 65-70.
+CrossRef
+Palma, P.; Alvarenga, P.; Palma, V.L.; Fernandes, R.M.; Soares, A.M.V.M.; Barbosa, I.R. Environ. Monit. Assess. 2010,165, 539-552.
+CrossRef
+Ntengwe, F. W. Physics and Chemistry of the Earth. 2006, 31, 832–839.
+CrossRef
+Ouyang, Y.; Nkedi-Kizza, P.; Wu, Q. T.; Shinde, D., Huang. Water Research. 2006, 40, 3800–3810.
+CrossRef
+Benjamin, R.; Chakrapani, B.K.; Devashish, K.; Nagarathna, A.V.; Ramachandra, T.V. Electronic Green Journal 1996, 1(6). http://escholarship.org/uc/item/00d1m13p
+Jeyaraj, M.; Ramakrishnan, K.;Arunachalam, S.;Magudeswaran, P.N.Asian J. Chem. 2016, 28, 1469-1479.
+CrossRef
+M. Jeyaraj, M.; Nirmaladevi, G.; P.N. Magudeswaran, Int. J. Res. Develop. Technol. 2014,2, 1-4.
+APHA, Standard methods for the examination of water and waste water. American Public Health Association, Washington, DC. 1995, 86, 1216.
+Mohanraj, R.; Sathiskumar, M.; Azeez, P.A.; Sivakumar, R. Bullatine of Environmental Contamination and Toxicology, 2000, 64, 638-643.
+CrossRef
+Srivastava, N.; Harit, G.H;Srivastava, R. India J. Environ. Biol.2009,30,889–894.
+Rao, G.S.; Rao, G.N.J. Environ. Sci. Eng. 2010, 52, 137–146.
+Wavde, P.N.;Arjun, B.J. Environ. Sci. Eng. 2010, 52, 57–60.
+Genthe, B.; Seager, J. The effect of water supply handling and usage on water quality in relation to health indices in developing communities. WRC report no.562/1/96. Water research commission. Pretoria, South Africa, 1996.
+Zamxaka, M.; Pironcheva, G.; Muyima, N.Y.O. Water. SA. 2004,30,333-340.
+Harilal, C.C.;Hashim, A.;Arun, P.R.;Baji, S.J. Ecol. Environ. Conserv. 2004,10, 187–192.
+Purandara, B.K.;Varadarajan, N.;Jayashree, K.Poll Res. 2003,22,189–197.
+Gupta, S.;Maheto, A.; Roy, P.;Datta, J.K.;Saha, R.N. Environ. Geol. 2008,53, 1271–1282. doi:10.1007/s00254-007-0725-7
+CrossRef
+Siraj, S.;Yousuf, A.R.;Bhat.F.A.;Parveen, N. Eco. Nat. Environ. 2010,2,84–91.
+Suresh, B.Int. J.Curr.Appl. Microbiol. Sci.2015,4, 1077- 1085.
+Chandra, R.;Nishandh, K.A;Azeez, P.A.Environ. Monit. Assess. 2010,169, 671-676.
+CrossRef
+Trivedy, R.K., Goel, P.K. Chemical and biological methods for Water Pollution Studies, Environ. Publ.Karad, India,1984.
+Esmaeili, H. R.; Johal, M. S.In Proceeding of National Seminar on New Trends in Fishery Development in India, Punjab University, Chandigarh, India, 2005.
+Sirsath, D.B.; Ambore, N.E.; Pulle, J.S.; Thorat, D.H. India. Poll. Res. 2006, 25, 507-509.
+Kumar, R.; Rather, G.H.;Pandit, A.K;Sarwar, S.G.Bio-resources, Concerns and Conservation. CORD Univ. of Kashmir, 2004, 71-78.
+Munawar, M.J. Hydrobiologia.1970,35, 127-162.
+CrossRef
+Kataria, H.C.; Singh, A.; Pandey, S.C. Poll. Res.2006,25, 553-556.
+Sundar, M.L.;Saseetharan, M.K.J. Environ. Sci. Eng. 2008,50,187–190.
+Shankar, B.S.; Balasubramanya,Reddy, M.T.M.J. Environ Sci. Eng.2008,50,97-102.
+Langmuir, D. The geochemistry of some carbonates ground waters in central Pennsylvania, GeochimCosmochim, Acta. 1971,35, 1023-1045.
+CrossRef
+Sudha Rani, P. Environmental monitoring of HussainSagar lake water. Ph.D Thesis. O.U. Hyderabad, 2004.
+Amin HossainiMotlagh, K.;Navatha, K.; Manikya Reddy, P. Nature Environ.Poll.Technol.2013, 12,355-358.
+AmeethaSinha, BaidyanathKumar,Tanuja Singh. Int. J. Environ. Sci. 2014, 4.doi: 10.6088/ijes.2014040400012.
+Vyas, A.; Mishra, D.D.; Bajapai, A.; Dixit, S.;Verma, N. Asian J. Exp. Sci,2006, 20, 289–296.
+Pandit, A.K.;Yousuf, A.R.J. Res. Dev. 2002,2,1–12.
+Girija, T.R.; Mahanta, C.;Chandramouli, V. Environ. Monit. Assess.2007,(doi: 10.1007/s10661-006-9391-6.)
+CrossRef
+EPA. Drinking water criteria document for turbidity: Drinking water research division. Office of Research and development. Washington, DC 1984.
+Kent, J.P.; Greenspan, J.R. Am. J. Public Health.1988,78, 139-143.
+CrossRef
+WHO: Guidelines for Drinking water quality, Surveillance and control of community supplies, World Health Organization, Geneva, 1987

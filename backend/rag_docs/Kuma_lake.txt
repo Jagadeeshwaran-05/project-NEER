@@ -1,0 +1,94 @@
+Characterization of microplastics and its pollution load index in freshwater Kumaraswamy Lake of Coimbatore, India
+Author links open overlay panel
+Davis Ephsy
+, 
+Selvaraju Raja
+
+Show more
+
+Add to Mendeley
+
+Share
+
+Cite
+https://doi.org/10.1016/j.etap.2023.104207
+Get rights and content
+Highlights
+•
+Microplastics have been screened from Kumaraswamy Lake surface water.
+•
+The mean microplastic concentration is 8.77 ± 0.27 particles/L.
+•
+High distribution of microplastics was identified in the monsoon season.
+•
+ATR- FTIR confirmed that the lake contains LLDPE, HDPE, PET, and PP microplastics.
+Abstract
+Microplastics are less than 5 mm in diameter that enters the ecosystem through the breakdown of large plastic particles or climate and human activity. This study examined the geographical and seasonal distribution of microplastics in the surface water of Kumaraswamy Lake, Coimbatore. During seasons, including summer, pre-monsoon, monsoon, and post-monsoon, samples were collected from the lake's inlet, centre, and outlet. All sampling points contained linear low-density polyethylene, high-density polyethylene, polyethylene terephthalate, and polypropylene microplastics. Water samples contained fibre, thin, fragment, and film microplastics in black, pink, blue, white, transparent, and yellow colours. Lake's microplastic pollution load index was under 10, indicating risk I. Over four seasons, microplastic content was 8.77 ± 0.27 particles per litre. The monsoon season had the highest microplastic concentration, followed by pre-monsoon, post-monsoon, and summer. These findings imply that the spatial and seasonal distribution of microplastics may be harmful to the fauna and flora of the lake.
+Graphical Abstract
+ga1
+Download: Download high-res image (149KB)
+Download: Download full-size image
+Introduction
+Microplastic pollution is a global issue that threatens marine and freshwater environments. The industrial plastics production and use of it led to waste disposal with poor waste management that affects the aquatic, and terrestrial environment where this phenomenon is strongly documented (Aliko et al., 2022b, Aliko et al., 2022a, Davis and Raja, 2020, Moore, 2008). Polyethylene, polypropylene, polyethylene terephthalate, and polyvinyl chloride (Zimmermann et al., 2019) are microplastic types, characterized as plastic particles smaller than 5 mm with a large surface area and strong hydrophobicity (Thompson et al., 2009). The progressive breakdown of plastic pieces can be caused by environmental and human factors (Thompson et al., 2004). Microplastics usually enter the aquatic ecosystem from the terrestrial environments as a result of improper disposal, drainage, transport by wind, and direct dumping (Hansen, 2016). The wide distribution of microplastic sources includes the fragmentation and degradation of plastic bags, plastic bottles, rope, pipes, and other waste plastics through surface water runoff (Vanapalli et al., 2021). Microplastics can accumulate over long periods in lakes, rivers, and the marine environment due to their high durability and floating nature.
+Microplastic is considered to enter the ocean mostly via rivers and lakes (Blanco and Scatena, 2006), and numerous studies have demonstrated how microplastics are dispersed around the world (Masura et al., 2015, Zheng et al., 2019, Athawuda et al., 2020, Xia et al., 2021). Freshwater systems are the most productive life support system, they are vital to humankind's social, ecological, and economic well-being, and they are surrounded by dense populations that can bring primary and secondary microplastics into the water (Multisanti et al., 2022). Only a few studies have been conducted on microplastics in freshwater lakes (Aliko et al., 2022b, Anderson et al., 2017, Eriksen et al., 2013, Gholamhosseini et al., 2023, Liu et al., 2019, Lombardo et al., 2022, Martyniuk et al., 2023, Strungaru et al., 2019). Microplastic distribution varies on a seasonal and spatial basis as well. Despite microplastics coming from a variety of terrestrial sources, land cover and proximity to anthropogenic activity are crucial factors in the pollution of freshwater (Grbić et al., 2020). Numerous studies, for instance, show higher microplastic concentrations during the rainy season (Wang et al., 2021, Gupta et al., 2021, Hurley et al., 2018) since land-based microplastics may enter waters through wind, and runoff water. Heavy rains and an excessive inflow of freshwater from rivers during the wet season convey more terrestrial plastic debris into the Mandovi Zuari estuarine system, Goa, increasing the average microplastic density on the surface water (Gupta et al., 2021). Heavy rain the day before the sampling day was linked to an increase in microplastic content (Schell et al., 2021). Increased the concentration of microplastic loads in sewage outflow and stormwater runoff in studies due to heavy rain and flood (Blettler et al., 2017, Kataoka et al., 2019). Another important element that transports or disperses the microplastics in coastal areas is the surface current (Kim et al., 2015). The concentration and distributions of microplastics in the Carassius auratus, surface water, and sediments of Poyang Lake (Yuan et al., 2019) are highly varied, and the lake contains other toxicants on the surface, resulting in a combined effect on aquatic and terrestrial organisms (Beckingham and Ghosh, 2017, Schirinzi et al., 2020, Prokić et al., 2021, Alimba et al., 2021, Pagano et al., 2022, Fabrello et al., 2022, Curpan et al., 2022, Tresnakova et al., 2023). Furthermore, and it would be worth underlining that plastic objects released into the environment can also be toxic due to the additives added to plastic objects to enhance their performance and being a vehicle for other toxic substances (Burgos-Aceves et al., 2021a, Burgos-Aceves et al., 2021b).
+In microplastic analysis, different water sampling methods, sample treatment, and separation methods were studied (Rezania et al., 2018; Liu et al., 2019). For the microplastic separations, samples were usually separated by using ZnCl2, and the 30% H2O2 (Su et al., 2016, Athawuda et al., 2020) for the digestion of organic matter present in it. Standard techniques for identifying and characterizing microplastic polymers include Fourier transform infrared spectroscopy (FTIR) and Field Emission Scanning Electron Microscope (FESEM) (Tagg et al., 2015). Microplastic dispersal in water is determined by plastic size, type, shape, and surface area. Microplastic, due to its small size and low density, may travel long distances and reach almost all ecologies via wind, water flow, and ocean currents (Rochman, 2018). The freshwater lake receives microplastics from urban, industrial, and direct dumping of wastes increasing the risk of pollution. Fishing is inseparable from polymer materials such as fishing nets, buoys, net cages, and ropes; by their shapes, size, and attractive colour it is mistaken as food by aquatic organisms such as fish (Baalkhuyur et al., 2018; Xiong et al., 2018), mussles (Digka et al., 2018), sessile invertebrates (Wright et al., 2013) and molluscs (Abidli et al., 2019). Microplastics found in fish can cause physical damage, intestinal blockage, histological alterations in the intestines, and behavioural changes (Jovanović, 2017). They can also accumulate at a high level throughout the food chain, posing a concern to human health (Yuan et al., 2022).
+Only a few studies on the microplastic pollution of lakes in Tamil Nadu State have been published. These lakes include Veeranam Lake in Cuddalore (K et al., 2021), Red Hill Lake in Thiruvalluvar (Gopinath et al., 2020), Puzhal Lake in Chennai (Silambarasan, Merline, 2020), Pulicat Lake in Chennai (Sathish et al., 2020), Ousudu Lake in Pondicherry (Supriya Varshini, Ramesh, 2021), and Periakulam Lake in Coimbatore ( Jesudass et al., 2020). Our study area Kumaraswamy Lake is located in Coimbatore District in Tamil Nadu State and is an important source of water, fishing, and an important habitat for birds, fish, plankton, insects, amphibians, reptiles, and mammals. Due to its proximity to cities, the lake becomes a dumping site for plastic waste. No baseline data on microplastic pollutants were obtained from the proposed research location, and fewer people are aware of the dangers that microplastic pollution poses to their health. Therefore, it is important to realize the characterization, distribution, and quantify the level of microplastic contamination by combined field survey and laboratory analysis. Microplastic distribution depends on seasonal and spatial influences such as rainfall, wind, sewage influx, and anthropogenic activities. In Coimbatore, high rainfall and wind during the monsoon season cause microplastic to be distributed to Kumaraswamy Lake water through Selvampathy lake, sewage inlets, and terrestrial environments. Microplastic in the lake may ingest by living organisms causing harm to health and transferred microplastic impact through the food web. So, the spatial and seasonal distribution of microplastic analysis is important for the health of Kumaraswamy Lake organisms and associated people.
+Access through your organization
+Check access to the full text by signing in through your organization.
+
+Section snippets
+Study area
+The Kumaraswamy Lake (110′00.52″ N, Longitude of 76056′42″ E) is located in Coimbatore, Tamil Nadu with a total area of 93.67 acres with a catchment area of 16 sq. km (Priya et al., 2011). The map of Kumaraswamy Lake is generated by using ArcGIS 10.6 as shown in Fig. 1. The lake is located on Thondamuthur Road in Coimbatore, and it receives water from the Noyyal River via the Chithravadi channel, and also excess water from Selvampathy Lake. Thadagam road on the eastern side and Narisipuram road 
+Abundance and distribution of microplastics
+Microplastics were detected in all of the selected sites in all seasons, with a concentration of 1263 particles/L, demonstrating that they are widely dispersed in the lake's surface water. The abundance of microplastics increases over the monsoon season and decreases during the summer seasons. In monsoon (12.41 ± 0.41particles/L), and pre-monsoon (11.16 ± 0.47 particles/L) seasons have a high microplastic concentration in the outlet of the lake. In the centre of the lake, microplastic
+Discussion
+Microplastics were detected in all of the selected sites in all seasons, with a average concentration of 8.77 ± 0.27 particles/L, demonstrating that they are widely dispersed in the lake's surface water. The surface water Guaiba lake in Brazil (11.9–61.2 items/m3) (Bertoldi et al., 2021) has a higher abundance of microplastic due to their large surface area of lakes and it still receives residential wastewater through various inlets (Andrade et al., 2019). Kumaraswamy Lake surface water shows
+Conclusion
+Surface water was sampled in this investigation to quantify the number and dispersion of microplastics in freshwater. Our research found that the average microplastic abundance was 8.77 ± 0.27 particles/L in Kumaraswamy Lake, which is located near a densely populated urban part of the city, and that the lake fish has been used for human consumption. Heavy rain, and wind during the monsoon season influence high distributions of microplastics. The colour, shape, polymer types, and size profiles
+CRediT authorship contribution statement
+Davis Ephsy: Conceptualization, Methodology, Formal analysis, Investigation, Validation, Visualization, Resources, Original manuscript writing, Writing − review & editing. Selvaraju Raja: Supervision, Conceptualization, Methodology, Formal analysis, Validation, Writing − review & editing.
+Declaration of Competing Interest
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+Acknowledgment
+The authors are grateful to the Kongunadu Arts and Science College for providing laboratory facilities for extending their material characterization facilities.
+References (92)
+S. Abidli et al.
+Microplastics in commercial molluscs from the lagoon of Bizerte (Northern Tunisia)
+Mar. Pollut. Bull.
+(2019)
+V. Aliko et al.
+Plastic invasion tolling: First evaluation of microplastics in water and two crab species from the nature reserve lagoonary complex of Kune-Vain, Albania
+Sci. Total Environ.
+(2022)
+C.G. Alimba et al.
+Micro (nano)-plastics in the environment and risk of carcinogenesis: Insight into possible mechanisms
+J. Hazard. Mater.
+(2021)
+P.J. Anderson et al.
+Microplastic contamination in Lake Winnipeg, Canada
+Environ. Pollut.
+(2017)
+F.M. Baalkhuyur et al.
+Microplastic in the gastrointestinal tract of fishes along the Saudi Arabian Red Sea coast
+Mar. Pollut. Bull.
+(2018)
+B. Beckingham et al.
+Differential bioavailability of polychlorinated biphenyls associated with environmental particles: Microplastic in comparison to wood, coal and biochar
+Environ. Pollut.
+(2017)
+C. Bertoldi et al.
+First evidence of microplastic contamination in the freshwater of Lake Guaíba, Porto Alegre, Brazil
+Sci. Total Environ.
+(2021)
+M.A. Burgos-Aceves et al.
+Impact of phthalates and bisphenols plasticizers on haemocyte immune function of aquatic invertebrates: A review on physiological, biochemical, and genomic aspects
+J. Hazard. Mater.
+(2021)
+M.A. Burgos-Aceves et al.
+Physiological and metabolic approach of plastic additive effects: Immune cells responses
+J. Hazard. Mater.
+(2021)
+A.S. Curpan et al.
+Mytilus galloprovincialis: An essential, low-cost model organism for the impact of xenobiotics on oxidative stress and public health
+Comp. Biochem. Physiol. Part C: Toxicol. Pharmacol.
+(2022)

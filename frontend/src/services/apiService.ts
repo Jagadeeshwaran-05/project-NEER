@@ -84,6 +84,64 @@ export interface PollutionMapping {
   recommendations: string[];
 }
 
+export interface ChatContextLake {
+  id: string;
+  name: string;
+  year: number;
+  waterHealth: string;
+  ndwi: number;
+  ndci: number;
+  fai: number;
+  mci: number;
+  swir_ratio: number;
+  turbidity: number;
+  bodLevel: number;
+  pollutionCauses: string;
+  suggestions: string;
+}
+
+export interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+export interface ChatRequest {
+  message: string;
+  history: ChatMessage[];
+  year?: number;
+  lake?: ChatContextLake | null;
+}
+
+export interface ChatResponse {
+  reply: string;
+  source: string;
+  model?: string | null;
+  retrieved_count?: number;
+  rag_ready?: boolean;
+}
+
+export interface AISuggestionRequest {
+  id: string;
+  name: string;
+  year: number;
+  waterHealth: string;
+  ndwi: number;
+  ndci: number;
+  fai: number;
+  mci: number;
+  swir_ratio: number;
+  turbidity: number;
+  bodLevel: number;
+  pollutionCauses: string;
+  suggestions: string;
+}
+
+export interface AISuggestionResponse {
+  suggestion: string;
+  source: string;
+  model?: string | null;
+}
+
 export const getAllLakes = async (year: number = 2024): Promise<Lake[]> => {
   const response = await fetch(`${API_BASE_URL}/lakes?year=${year}`);
   if (!response.ok) {
@@ -118,6 +176,34 @@ export const getPollutionSources = async (lakeId: string): Promise<PollutionMapp
   const response = await fetch(`${API_BASE_URL}/pollution-sources/${lakeId}`);
   if (!response.ok) {
     throw new Error("Failed to fetch pollution sources");
+  }
+  return response.json();
+};
+
+export const sendChatMessage = async (payload: ChatRequest): Promise<ChatResponse> => {
+  const response = await fetch(`${API_BASE_URL}/chat`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) {
+    throw new Error("Failed to send chat message");
+  }
+  return response.json();
+};
+
+export const getAISuggestion = async (payload: AISuggestionRequest): Promise<AISuggestionResponse> => {
+  const response = await fetch(`${API_BASE_URL}/ai-suggestions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) {
+    throw new Error("Failed to fetch AI suggestion");
   }
   return response.json();
 };

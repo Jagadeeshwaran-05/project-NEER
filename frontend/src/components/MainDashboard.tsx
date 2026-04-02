@@ -20,6 +20,7 @@ import IndexChart from "./IndexChart";
 import AlertsPanel from "./AlertsPanel";
 import HistoricalTrends from "./HistoricalTrends";
 import PollutionMappingPanel from "./PollutionMappingPanel";
+import ChatAssistant from "./ChatAssistant";
 import { getAllLakes, Lake } from "../services/apiService";
 import "leaflet/dist/leaflet.css";
 
@@ -226,6 +227,12 @@ const MainDashboard: React.FC = () => {
           </Card>
         </Grid>
       </Grid>
+
+      <ChatAssistant
+        lakes={lakes}
+        selectedLake={selectedLake}
+        selectedYear={selectedYear}
+      />
     </Box>
   );
 };

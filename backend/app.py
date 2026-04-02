@@ -4,9 +4,216 @@ import ee
 import json
 from datetime import datetime
 import os
+import urllib.request
+import urllib.error
+
+try:
+    from langchain_core.documents import Document
+    from langchain_community.document_loaders import PyPDFLoader
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
+    from langchain_community.embeddings import OllamaEmbeddings
+    from langchain_community.vectorstores import FAISS
+    LANGCHAIN_AVAILABLE = True
+    LANGCHAIN_IMPORT_ERROR = None
+except Exception as import_error:
+    LANGCHAIN_AVAILABLE = False
+    LANGCHAIN_IMPORT_ERROR = str(import_error)
 
 app = Flask(__name__)
 CORS(app)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+GEOJSON_DIR = os.path.join(BASE_DIR, "geojson_files")
+
+LAKE_GEOJSON_FILES = {
+    "Ukkadam": "ukkadamlakepolygonmap.geojson",
+    "Valankulam": "valankulam(includes chinna kulam).geojson",
+    "Kurichi": "Kurichi kulam.geojson",
+    "Perur": "Perur lake.geojson",
+    "Singanallur": "Singanallur lake.geojson",
+}
+
+OLLAMA_BASE_URL = os.environ.get("OLLAMA_BASE_URL", "http://127.0.0.1:11434")
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "phi3:latest")
+OLLAMA_EMBED_MODEL = os.environ.get("OLLAMA_EMBED_MODEL", "nomic-embed-text")
+RAG_DOCS_DIR = os.environ.get("RAG_DOCS_DIR", os.path.join(BASE_DIR, "rag_docs"))
+RAG_TOP_K = int(os.environ.get("RAG_TOP_K", "4"))
+
+RAG_VECTORSTORE = None
+RAG_READY = False
+RAG_LAST_ERROR = None
+RAG_DOCUMENT_COUNT = 0
+RAG_CHUNK_COUNT = 0
+
+
+def load_rag_documents():
+    """Load local knowledge documents for RAG."""
+    if not os.path.exists(RAG_DOCS_DIR):
+        return []
+
+    documents = []
+    supported_extensions = {".txt", ".md", ".pdf"}
+
+    for root, _, files in os.walk(RAG_DOCS_DIR):
+        for file_name in files:
+            extension = os.path.splitext(file_name)[1].lower()
+            if extension not in supported_extensions:
+                continue
+
+            file_path = os.path.join(root, file_name)
+            try:
+                if extension == ".pdf":
+                    pdf_documents = PyPDFLoader(file_path).load()
+                    for pdf_document in pdf_documents:
+                        if pdf_document.page_content.strip():
+                            pdf_document.metadata.update({"source": file_name, "path": file_path})
+                            documents.append(pdf_document)
+                else:
+                    with open(file_path, "r", encoding="utf-8") as file_handle:
+                        content = file_handle.read().strip()
+                    if not content:
+                        continue
+
+                    documents.append(
+                        Document(
+                            page_content=content,
+                            metadata={"source": file_name, "path": file_path}
+                        )
+                    )
+            except Exception as error:
+                print(f"RAG document read error for {file_path}: {error}")
+
+    return documents
+
+
+def initialize_rag_index():
+    """Initialize LangChain RAG index using local documents and Ollama embeddings."""
+    global RAG_VECTORSTORE, RAG_READY, RAG_LAST_ERROR, RAG_DOCUMENT_COUNT, RAG_CHUNK_COUNT
+
+    if not LANGCHAIN_AVAILABLE:
+        RAG_VECTORSTORE = None
+        RAG_READY = False
+        RAG_DOCUMENT_COUNT = 0
+        RAG_CHUNK_COUNT = 0
+        RAG_LAST_ERROR = f"LangChain imports unavailable: {LANGCHAIN_IMPORT_ERROR}"
+        print(RAG_LAST_ERROR)
+        return
+
+    try:
+        documents = load_rag_documents()
+        if not documents:
+            RAG_VECTORSTORE = None
+            RAG_READY = False
+            RAG_DOCUMENT_COUNT = 0
+            RAG_CHUNK_COUNT = 0
+            RAG_LAST_ERROR = f"No RAG documents found in {RAG_DOCS_DIR}"
+            print(RAG_LAST_ERROR)
+            return
+
+        splitter = RecursiveCharacterTextSplitter(
+            chunk_size=700,
+            chunk_overlap=120
+        )
+        chunks = splitter.split_documents(documents)
+        RAG_DOCUMENT_COUNT = len(documents)
+        RAG_CHUNK_COUNT = len(chunks)
+
+        embedding_model = OllamaEmbeddings(
+            model=OLLAMA_EMBED_MODEL,
+            base_url=OLLAMA_BASE_URL
+        )
+        RAG_VECTORSTORE = FAISS.from_documents(chunks, embedding_model)
+        RAG_READY = True
+        RAG_LAST_ERROR = None
+        print(f"RAG index initialized with {len(chunks)} chunks from {len(documents)} documents")
+    except Exception as error:
+        RAG_VECTORSTORE = None
+        RAG_READY = False
+        RAG_DOCUMENT_COUNT = 0
+        RAG_CHUNK_COUNT = 0
+        RAG_LAST_ERROR = str(error)
+        print(f"RAG initialization failed: {error}")
+
+
+def retrieve_rag_context(question, payload):
+    """Retrieve top relevant document chunks for the current user query."""
+    if not RAG_READY or RAG_VECTORSTORE is None:
+        return []
+
+    lake = payload.get("lake", {})
+    lake_name = lake.get("name") or payload.get("lake_name") or "Unknown"
+    retrieval_query = (
+        f"Lake monitoring guidance for {lake_name}. "
+        f"Question: {question}. "
+        f"Water health: {lake.get('waterHealth', 'Unknown')}. "
+        f"BOD: {lake.get('bodLevel', 'Unknown')}. "
+        f"Pollution causes: {lake.get('pollutionCauses', 'Unknown')}."
+    )
+
+    try:
+        docs = RAG_VECTORSTORE.similarity_search(retrieval_query, k=RAG_TOP_K)
+        return docs
+    except Exception as error:
+        print(f"RAG retrieval error: {error}")
+        return []
+
+
+def load_lake_geometry(lake_name):
+    """Load a lake geometry from the GeoJSON files directory."""
+    filename = LAKE_GEOJSON_FILES.get(lake_name)
+    if not filename:
+        return None
+
+    file_path = os.path.join(GEOJSON_DIR, filename)
+    if not os.path.exists(file_path):
+        return None
+
+    try:
+        with open(file_path, "r") as file_handle:
+            return json.load(file_handle)
+    except Exception as error:
+        print(f"Error loading geometry for {lake_name}: {error}")
+        return None
+
+
+def build_mock_lake(
+    lake_id,
+    lake_name,
+    ndwi,
+    ndci,
+    fai,
+    mci,
+    swir_ratio,
+    turbidity,
+    bod_level,
+    water_health,
+    pollution_causes,
+    suggestions,
+    year,
+):
+    geometry = load_lake_geometry(lake_name)
+    if geometry is None:
+        geometry = {
+            "type": "FeatureCollection",
+            "features": [],
+        }
+
+    return {
+        'id': lake_id,
+        'name': lake_name,
+        'ndwi': ndwi,
+        'ndci': ndci,
+        'fai': fai,
+        'mci': mci,
+        'swir_ratio': swir_ratio,
+        'turbidity': turbidity,
+        'bodLevel': bod_level,
+        'waterHealth': water_health,
+        'pollutionCauses': pollution_causes,
+        'suggestions': suggestions,
+        'geometry': geometry,
+        'year': year,
+    }
 
 # Initialize Google Earth Engine
 def initialize_earth_engine():
@@ -19,8 +226,11 @@ def initialize_earth_engine():
     except Exception as e:
         print(f"Standard initialization failed: {e}")
         try:
-            # Try to authenticate interactively
-            ee.Authenticate()
+            # Try to authenticate interactively without gcloud dependency
+            try:
+                ee.Authenticate(auth_mode='localhost')
+            except Exception:
+                ee.Authenticate(auth_mode='notebook')
             ee.Initialize(project='neer2025')
             print("Google Earth Engine initialized successfully after authentication")
             return True
@@ -31,6 +241,9 @@ def initialize_earth_engine():
 
 # Global variable to track EE status
 EE_INITIALIZED = initialize_earth_engine()
+
+# Global initialization for LangChain RAG
+initialize_rag_index()
 
 @app.route('/')
 def home():
@@ -57,84 +270,51 @@ def get_mock_lakes():
     year = request.args.get('year', 2024, type=int)
     
     mock_lakes = [
-        {
-            'id': 'ukkadam',
-            'name': 'Ukkadam',
-            'ndwi': 0.3,
-            'ndci': -0.1,
-            'fai': 0.02,
-            'mci': 15.2,
-            'swir_ratio': 1.2,
-            'turbidity': 850.5,
-            'bodLevel': 15.45,
-            'waterHealth': 'Poor',
-            'pollutionCauses': 'High sediment, algal bloom',
-            'suggestions': 'Reduce catchment erosion, limit nutrient runoff',
-            'geometry': {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {"name": "Ukkadam"},
-                    "geometry": {
-                        "coordinates": [[[76.96095638648234, 10.988575303133587], [76.96051032283168, 10.988737482780266], [76.95813131669479, 10.9880238916666], [76.96095638648234, 10.988575303133587]]],
-                        "type": "Polygon"
-                    }
-                }]
-            },
-            'year': year
-        },
-        {
-            'id': 'valankulam',
-            'name': 'Valankulam',
-            'ndwi': 0.5,
-            'ndci': -0.05,
-            'fai': 0.01,
-            'mci': 8.1,
-            'swir_ratio': 1.0,
-            'turbidity': 420.3,
-            'bodLevel': 6.2,
-            'waterHealth': 'Moderate',
-            'pollutionCauses': 'Minor algal growth',
-            'suggestions': 'Monitor nutrient levels',
-            'geometry': {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {"name": "Valankulam"},
-                    "geometry": {
-                        "coordinates": [[[76.95, 10.97], [76.96, 10.97], [76.96, 10.98], [76.95, 10.98], [76.95, 10.97]]],
-                        "type": "Polygon"
-                    }
-                }]
-            },
-            'year': year
-        },
-        {
-            'id': 'kurichi',
-            'name': 'Kurichi',
-            'ndwi': 0.7,
-            'ndci': -0.15,
-            'fai': 0.005,
-            'mci': 5.3,
-            'swir_ratio': 0.8,
-            'turbidity': 180.1,
-            'bodLevel': 3.8,
-            'waterHealth': 'Good',
-            'pollutionCauses': 'No major issues',
-            'suggestions': 'Continue current management',
-            'geometry': {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {"name": "Kurichi"},
-                    "geometry": {
-                        "coordinates": [[[76.94, 10.99], [76.95, 10.99], [76.95, 11.00], [76.94, 11.00], [76.94, 10.99]]],
-                        "type": "Polygon"
-                    }
-                }]
-            },
-            'year': year
-        }
+        build_mock_lake(
+            'ukkadam',
+            'Ukkadam',
+            0.3,
+            -0.1,
+            0.02,
+            15.2,
+            1.2,
+            850.5,
+            15.45,
+            'Poor',
+            'High sediment, algal bloom',
+            'Reduce catchment erosion, limit nutrient runoff',
+            year,
+        ),
+        build_mock_lake(
+            'valankulam',
+            'Valankulam',
+            0.5,
+            -0.05,
+            0.01,
+            8.1,
+            1.0,
+            420.3,
+            6.2,
+            'Moderate',
+            'Minor algal growth',
+            'Monitor nutrient levels',
+            year,
+        ),
+        build_mock_lake(
+            'kurichi',
+            'Kurichi',
+            0.7,
+            -0.15,
+            0.005,
+            5.3,
+            0.8,
+            180.1,
+            3.8,
+            'Good',
+            'No major issues',
+            'Continue current management',
+            year,
+        )
     ]
     
     return jsonify(mock_lakes)
@@ -253,139 +433,325 @@ def classify_pollution(values):
 
     return ", ".join(reasons) or "No major issues", ", ".join(set(suggestions)) or "No action needed"
 
+
+def build_ollama_prompt(payload):
+    """Build a grounded prompt for local LLM recommendations."""
+    return f"""
+You are a water quality assistant for lake restoration planning.
+Generate concise, practical recommendations based only on this lake data.
+
+Lake: {payload.get('name', 'Unknown')}
+Year: {payload.get('year', 'Unknown')}
+Water Health: {payload.get('waterHealth', 'Unknown')}
+NDWI: {payload.get('ndwi', 'Unknown')}
+NDCI: {payload.get('ndci', 'Unknown')}
+FAI: {payload.get('fai', 'Unknown')}
+MCI: {payload.get('mci', 'Unknown')}
+SWIR Ratio: {payload.get('swir_ratio', 'Unknown')}
+Turbidity: {payload.get('turbidity', 'Unknown')}
+BOD Level (mg/L): {payload.get('bodLevel', 'Unknown')}
+Pollution Causes: {payload.get('pollutionCauses', 'Unknown')}
+
+Return exactly:
+1) a one-line summary,
+2) three short actionable recommendations,
+3) one caution note.
+Keep total response under 80 words.
+""".strip()
+
+
+def get_ollama_suggestion(payload):
+    """Generate a recommendation via local Ollama model."""
+    api_url = f"{OLLAMA_BASE_URL}/api/chat"
+    request_payload = {
+        "model": OLLAMA_MODEL,
+        "messages": [
+            {
+                "role": "system",
+                "content": "You produce grounded, concise environmental recommendations from provided numeric inputs."
+            },
+            {
+                "role": "user",
+                "content": build_ollama_prompt(payload)
+            }
+        ],
+        "stream": False,
+        "options": {
+            "temperature": 0.2
+        }
+    }
+
+    try:
+        req = urllib.request.Request(
+            api_url,
+            data=json.dumps(request_payload).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=45) as response:
+            response_json = json.loads(response.read().decode("utf-8"))
+            return response_json.get("message", {}).get("content", "").strip()
+    except urllib.error.URLError as error:
+        print(f"Ollama connection error: {error}")
+        return None
+    except Exception as error:
+        print(f"Ollama generation error: {error}")
+        return None
+
+
+def build_chat_context_prompt(payload):
+    """Build a compact lake context prompt for chatbot conversations."""
+    lake = payload.get("lake", {})
+    lake_name = lake.get("name") or payload.get("lake_name") or "Unknown"
+    return f"""
+You are a helpful assistant for a lake monitoring dashboard.
+Answer with concise, practical guidance using the provided lake context.
+
+Lake: {lake_name}
+Year: {payload.get('year', 'Unknown')}
+Water Health: {lake.get('waterHealth', 'Unknown')}
+NDWI: {lake.get('ndwi', 'Unknown')}
+NDCI: {lake.get('ndci', 'Unknown')}
+FAI: {lake.get('fai', 'Unknown')}
+MCI: {lake.get('mci', 'Unknown')}
+SWIR Ratio: {lake.get('swir_ratio', 'Unknown')}
+Turbidity: {lake.get('turbidity', 'Unknown')}
+BOD Level (mg/L): {lake.get('bodLevel', 'Unknown')}
+Pollution Causes: {lake.get('pollutionCauses', 'Unknown')}
+Existing Suggestions: {lake.get('suggestions', 'Unknown')}
+
+Rules:
+- Keep answers under 120 words.
+- Use bullet points if helpful.
+- Do not mention unsupported facts.
+- If the question is outside the lake context, say so briefly and stay helpful.
+""".strip()
+
+
+def get_ollama_chat_response(payload):
+    """Generate a chat reply via local Ollama model."""
+    api_url = f"{OLLAMA_BASE_URL}/api/chat"
+    history = payload.get("history", [])
+    user_message = payload.get("message", "")
+    retrieved_docs = retrieve_rag_context(user_message, payload)
+    context_blocks = []
+    for index, doc in enumerate(retrieved_docs, start=1):
+        source = doc.metadata.get("source", "unknown")
+        context_blocks.append(f"[{index}] Source: {source}\n{doc.page_content}")
+
+    rag_context = "\n\n".join(context_blocks) if context_blocks else "No retrieved context available."
+
+    messages = [
+        {
+            "role": "system",
+            "content": "You are a concise assistant for a water-quality dashboard. Ground your responses in the provided context."
+        },
+        {
+            "role": "system",
+            "content": build_chat_context_prompt(payload)
+        },
+        {
+            "role": "system",
+            "content": (
+                "Retrieved knowledge context (RAG):\n"
+                f"{rag_context}\n\n"
+                "When possible, cite source numbers like [1], [2]."
+            )
+        },
+    ]
+
+    for item in history[-6:]:
+        role = item.get("role")
+        content = item.get("content")
+        if role in {"user", "assistant"} and content:
+            messages.append({"role": role, "content": content})
+
+    messages.append({"role": "user", "content": user_message})
+
+    request_payload = {
+        "model": OLLAMA_MODEL,
+        "messages": messages,
+        "stream": False,
+        "options": {
+            "temperature": 0.3
+        }
+    }
+
+    try:
+        req = urllib.request.Request(
+            api_url,
+            data=json.dumps(request_payload).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=60) as response:
+            response_json = json.loads(response.read().decode("utf-8"))
+            return {
+                "reply": response_json.get("message", {}).get("content", "").strip(),
+                "retrieved_count": len(retrieved_docs)
+            }
+    except urllib.error.URLError as error:
+        print(f"Ollama chat connection error: {error}")
+        return None
+    except Exception as error:
+        print(f"Ollama chat generation error: {error}")
+        return None
+
+
+@app.route('/api/ai-suggestions', methods=['POST'])
+def get_ai_suggestions():
+    """Generate local-model lake recommendations using Ollama."""
+    payload = request.get_json(silent=True) or {}
+
+    fallback_suggestion = payload.get('suggestions', 'No additional suggestion available')
+    suggestion = get_ollama_suggestion(payload)
+
+    if suggestion:
+        return jsonify({
+            'suggestion': suggestion,
+            'source': 'ollama',
+            'model': OLLAMA_MODEL
+        })
+
+    return jsonify({
+        'suggestion': fallback_suggestion,
+        'source': 'rule-based-fallback',
+        'model': None
+    })
+
+
+@app.route('/api/chat', methods=['POST'])
+def chat_assistant():
+    """Chat with the local Ollama assistant using lake context."""
+    payload = request.get_json(silent=True) or {}
+    response = get_ollama_chat_response(payload)
+
+    if response and response.get("reply"):
+        return jsonify({
+            'reply': response.get("reply"),
+            'source': 'rag+ollama' if response.get("retrieved_count", 0) > 0 else 'ollama',
+            'model': OLLAMA_MODEL,
+            'retrieved_count': response.get("retrieved_count", 0),
+            'rag_ready': RAG_READY,
+        })
+
+    lake = payload.get('lake', {})
+    lake_name = lake.get('name') or payload.get('lake_name') or 'the selected lake'
+    fallback_reply = (
+        f"I can help with {lake_name}. Try asking about causes, trends, or actions. "
+        f"Current health: {lake.get('waterHealth', 'Unknown')}."
+    )
+    return jsonify({
+        'reply': fallback_reply,
+        'source': 'fallback',
+        'model': None
+    })
+
+
+@app.route('/api/rag/status', methods=['GET'])
+def rag_status():
+    """Get the status of LangChain RAG readiness."""
+    return jsonify({
+        'langchain_available': LANGCHAIN_AVAILABLE,
+        'rag_ready': RAG_READY,
+        'docs_dir': RAG_DOCS_DIR,
+        'embedding_model': OLLAMA_EMBED_MODEL,
+        'document_count': RAG_DOCUMENT_COUNT,
+        'chunk_count': RAG_CHUNK_COUNT,
+        'error': RAG_LAST_ERROR,
+    })
+
+
+@app.route('/api/rag/reindex', methods=['POST'])
+def rag_reindex():
+    """Rebuild the LangChain RAG index from local documents."""
+    initialize_rag_index()
+    return jsonify({
+        'langchain_available': LANGCHAIN_AVAILABLE,
+        'rag_ready': RAG_READY,
+        'document_count': RAG_DOCUMENT_COUNT,
+        'chunk_count': RAG_CHUNK_COUNT,
+        'error': RAG_LAST_ERROR,
+    })
+
 def get_mock_lakes_response(year):
     """Return mock data response for testing when Earth Engine is not available"""
     mock_lakes = [
-        {
-            'id': 'ukkadam',
-            'name': 'Ukkadam',
-            'ndwi': 0.3,
-            'ndci': -0.1,
-            'fai': 0.02,
-            'mci': 15.2,
-            'swir_ratio': 1.2,
-            'turbidity': 850.5,
-            'bodLevel': 15.45,
-            'waterHealth': 'Poor',
-            'pollutionCauses': 'High sediment, algal bloom',
-            'suggestions': 'Reduce catchment erosion, limit nutrient runoff',
-            'geometry': {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {"name": "Ukkadam"},
-                    "geometry": {
-                        "coordinates": [[[76.96095638648234, 10.988575303133587], [76.96051032283168, 10.988737482780266], [76.95813131669479, 10.9880238916666], [76.96095638648234, 10.988575303133587]]],
-                        "type": "Polygon"
-                    }
-                }]
-            },
-            'year': year
-        },
-        {
-            'id': 'valankulam',
-            'name': 'Valankulam',
-            'ndwi': 0.5,
-            'ndci': -0.05,
-            'fai': 0.01,
-            'mci': 8.1,
-            'swir_ratio': 1.0,
-            'turbidity': 420.3,
-            'bodLevel': 6.2,
-            'waterHealth': 'Moderate',
-            'pollutionCauses': 'Minor algal growth',
-            'suggestions': 'Monitor nutrient levels',
-            'geometry': {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {"name": "Valankulam"},
-                    "geometry": {
-                        "coordinates": [[[76.95, 10.97], [76.96, 10.97], [76.96, 10.98], [76.95, 10.98], [76.95, 10.97]]],
-                        "type": "Polygon"
-                    }
-                }]
-            },
-            'year': year
-        },
-        {
-            'id': 'kurichi',
-            'name': 'Kurichi',
-            'ndwi': 0.7,
-            'ndci': -0.15,
-            'fai': 0.005,
-            'mci': 5.3,
-            'swir_ratio': 0.8,
-            'turbidity': 180.1,
-            'bodLevel': 3.8,
-            'waterHealth': 'Good',
-            'pollutionCauses': 'No major issues',
-            'suggestions': 'Continue current management',
-            'geometry': {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {"name": "Kurichi"},
-                    "geometry": {
-                        "coordinates": [[[76.94, 10.99], [76.95, 10.99], [76.95, 11.00], [76.94, 11.00], [76.94, 10.99]]],
-                        "type": "Polygon"
-                    }
-                }]
-            },
-            'year': year
-        },
-        {
-            'id': 'perur',
-            'name': 'Perur',
-            'ndwi': 0.4,
-            'ndci': -0.08,
-            'fai': 0.015,
-            'mci': 12.5,
-            'swir_ratio': 1.1,
-            'turbidity': 650.2,
-            'bodLevel': 8.1,
-            'waterHealth': 'Poor',
-            'pollutionCauses': 'Chemical pollution, sediment',
-            'suggestions': 'Investigate industrial discharges, reduce erosion',
-            'geometry': {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {"name": "Perur"},
-                    "geometry": {
-                        "coordinates": [[[76.93, 10.96], [76.94, 10.96], [76.94, 10.97], [76.93, 10.97], [76.93, 10.96]]],
-                        "type": "Polygon"
-                    }
-                }]
-            },
-            'year': year
-        },
-        {
-            'id': 'singanallur',
-            'name': 'Singanallur',
-            'ndwi': 0.6,
-            'ndci': -0.12,
-            'fai': 0.008,
-            'mci': 6.8,
-            'swir_ratio': 0.9,
-            'turbidity': 320.4,
-            'bodLevel': 5.3,
-            'waterHealth': 'Moderate',
-            'pollutionCauses': 'Moderate nutrient loading',
-            'suggestions': 'Control agricultural runoff',
-            'geometry': {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {"name": "Singanallur"},
-                    "geometry": {
-                        "coordinates": [[[76.97, 10.98], [76.98, 10.98], [76.98, 10.99], [76.97, 10.99], [76.97, 10.98]]],
-                        "type": "Polygon"
-                    }
-                }]
-            },
-            'year': year
-        }
+        build_mock_lake(
+            'ukkadam',
+            'Ukkadam',
+            0.3,
+            -0.1,
+            0.02,
+            15.2,
+            1.2,
+            850.5,
+            15.45,
+            'Poor',
+            'High sediment, algal bloom',
+            'Reduce catchment erosion, limit nutrient runoff',
+            year,
+        ),
+        build_mock_lake(
+            'valankulam',
+            'Valankulam',
+            0.5,
+            -0.05,
+            0.01,
+            8.1,
+            1.0,
+            420.3,
+            6.2,
+            'Moderate',
+            'Minor algal growth',
+            'Monitor nutrient levels',
+            year,
+        ),
+        build_mock_lake(
+            'kurichi',
+            'Kurichi',
+            0.7,
+            -0.15,
+            0.005,
+            5.3,
+            0.8,
+            180.1,
+            3.8,
+            'Good',
+            'No major issues',
+            'Continue current management',
+            year,
+        ),
+        build_mock_lake(
+            'perur',
+            'Perur',
+            0.4,
+            -0.08,
+            0.015,
+            12.5,
+            1.1,
+            650.2,
+            8.1,
+            'Poor',
+            'Chemical pollution, sediment',
+            'Investigate industrial discharges, reduce erosion',
+            year,
+        ),
+        build_mock_lake(
+            'singanallur',
+            'Singanallur',
+            0.6,
+            -0.12,
+            0.008,
+            6.8,
+            0.9,
+            320.4,
+            5.3,
+            'Moderate',
+            'Moderate nutrient loading',
+            'Control agricultural runoff',
+            year,
+        )
     ]
     
     return jsonify(mock_lakes)
@@ -412,40 +778,34 @@ def get_all_lakes():
             .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10)) \
             .select(['B2', 'B3', 'B4', 'B5', 'B6', 'B8', 'B11', 'B12']) \
             .median()
-        
+
         s2 = compute_indices(s2)
-        
+
         results = []
-        
+
         for lake_name, lake_fc in lakes.items():
             try:
                 print(f"Processing lake: {lake_name}")
-                # Get lake statistics
                 stats = s2.reduceRegion(
                     reducer=ee.Reducer.mean(),
                     geometry=lake_fc.geometry(),
                     scale=10,
                     maxPixels=1e9
                 ).getInfo()
-                
+
                 if stats and 'NDWI' in stats and stats['NDWI'] is not None:
-                    # Calculate BOD
                     bod = 26.303 * stats['NDWI'] + 7.546
-                    
-                    # Classify water health
+
                     if bod > 8:
                         health = "Poor"
                     elif bod > 4:
                         health = "Moderate"
                     else:
                         health = "Good"
-                    
-                    # Get pollution causes and suggestions
+
                     reasons, suggestions = classify_pollution(stats)
-                    
-                    # Get lake geometry for frontend
                     geometry = lake_fc.getInfo()
-                    
+
                     results.append({
                         'id': lake_name.lower().replace(' ', '_'),
                         'name': lake_name,
@@ -465,18 +825,17 @@ def get_all_lakes():
                     print(f"Successfully processed {lake_name}")
                 else:
                     print(f"No valid stats for {lake_name}")
-                    
-            except Exception as e:
-                print(f"Error processing lake {lake_name}: {str(e)}")
+            except Exception as error:
+                print(f"Error processing lake {lake_name}: {error}")
                 continue
-        
+
         if results:
             print(f"Returning {len(results)} real lake results")
             return jsonify(results)
-        else:
-            print("No real data available, falling back to mock data")
-            return get_mock_lakes_response(year)
-        
+
+        print("No real data available, falling back to mock data")
+        return get_mock_lakes_response(year)
+
     except Exception as e:
         print(f"Earth Engine error: {str(e)}")
         print("Falling back to mock data due to Earth Engine issues")
